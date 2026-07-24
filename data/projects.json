@@ -1,0 +1,21 @@
+[
+  {
+    "id": "vectr",
+    "name": "Vectr",
+    "aka": "Vectr AI",
+    "tagline": {
+      "en": "Mobile IDE + agent. Your keys. Your device.",
+      "ru": "Мобильная IDE + агент. Твои ключи. Твой девайс."
+    },
+    "description": {
+      "en": "Local-first Android IDE with an optional AI agent. BYOK for DeepSeek or any OpenAI-compatible API. SAF project files, CodeMirror editor, on-device chat history, optional Termux shell, whitelist and auto-accept in settings. No DMTech servers for your projects.",
+      "ru": "Local-first Android IDE с опциональным ИИ-агентом. BYOK: DeepSeek или любой OpenAI-compatible API. Файлы через SAF, редактор CodeMirror, чаты на устройстве, опциональный Termux, whitelist и auto-accept в настройках. Серверов DMTech для твоих проектов нет."
+    },
+    "icon": "logo/vectr/vectr.png",
+    "links": {
+      "privacy": "privacy/",
+      "play": null,
+      "github": null
+    }
+  }
+]

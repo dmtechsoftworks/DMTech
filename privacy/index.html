@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy - Vectr | DMTech Softworks</title>
+  <meta name="description" content="Privacy Policy for Vectr by DMTech Softworks. Last updated July 24, 2026." />
+  <meta name="theme-color" content="#0b0b0b" />
+  <link rel="icon" href="../logo/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+
+  <div class="page">
+    <header class="site-header">
+      <div class="nav-inner">
+        <a class="brand-mark" href="../index.html">
+          <img src="../logo/logo.png" alt="" width="28" height="28" />
+          <span>DMTech</span>
+        </a>
+
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" data-i18n-aria="nav.open">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-panel" data-nav-panel>
+          <ul class="nav-links">
+            <li><a href="../index.html#about" data-i18n="nav.about">About</a></li>
+            <li><a href="../index.html#projects" data-i18n="nav.projects">Projects</a></li>
+            <li><a href="./" data-i18n="nav.privacy">Privacy</a></li>
+            <li><a href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+          </ul>
+          <div class="lang-switch" role="group" data-i18n-aria="lang.label" aria-label="Language">
+            <button type="button" data-lang-btn="en">EN</button>
+            <button type="button" data-lang-btn="ru">RU</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="privacy-page">
+      <div class="wrap">
+        <a class="back-link" href="../index.html" data-i18n="privacy.back">Back home</a>
+        <h1 data-i18n="privacy.title">Privacy Policy - Vectr</h1>
+        <p class="privacy-meta">
+          <span data-i18n="privacy.updated">Last updated: July 24, 2026</span>
+          <br />
+          <span data-i18n="privacy.note">This page is the public policy for Vectr on Google Play.</span>
+        </p>
+
+        <article class="policy-block" data-lang-panel="en">
+          <h2>1. Who we are</h2>
+          <p>Vectr is a local mobile IDE with an optional AI agent, developed by DMTech Softworks. The app runs on your device.</p>
+
+          <h2>2. Data we process</h2>
+          <ul>
+            <li>API keys and preferences are stored on your device (encrypted prefs where applicable).</li>
+            <li>Project files you open via the system file picker stay under your control (SAF). Vectr does not upload your project to our servers.</li>
+            <li>Chat history is stored locally in an on-device database.</li>
+            <li>When you use the agent, prompts and tool results are sent to the AI provider YOU configure (e.g. DeepSeek or an OpenAI-compatible endpoint). We do not operate that API.</li>
+          </ul>
+
+          <h2>3. Optional network features</h2>
+          <ul>
+            <li>Web search / fetch_url may contact third-party sites (e.g. DuckDuckGo) to answer questions.</li>
+            <li>Notifications (Android 13+) show when the agent works in the background or needs approval - only if you allow them.</li>
+          </ul>
+
+          <h2>4. Commands, file edits, and approvals</h2>
+          <ul>
+            <li>By default, shell commands and file edits from the agent require your confirmation in the app (pending bar and/or approval notifications).</li>
+            <li>Optionally, in Settings → Trust &amp; approvals, you can whitelist program names so matching commands auto-run; enable auto-accept for file edits; choose the auto-run runner (built-in Shell or Termux).</li>
+            <li>These options are off by default and under your control.</li>
+          </ul>
+
+          <h2>5. Optional Termux integration</h2>
+          <ul>
+            <li>Vectr can ask Termux to run shell commands (after your confirmation, or auto-run if you whitelisted the program and chose Termux as runner).</li>
+            <li>This requires Termux and Termux:Tasker installed from F-Droid, plus the special permission “Run commands in Termux environment”.</li>
+            <li>Termux is optional. You can skip it and still use files, editor, and the agent (without Termux shell tools).</li>
+          </ul>
+
+          <h2>6. Permissions summary</h2>
+          <ul>
+            <li>Internet - AI provider API and optional web search/fetch.</li>
+            <li>Notifications - progress of background AI work and approval prompts.</li>
+            <li>Foreground service (dataSync) - keep the AI stream alive when the app is in the background.</li>
+            <li>Termux RUN_COMMAND - only to run shell commands via Termux when you use that integration.</li>
+            <li>Storage access - only folders/files you explicitly open.</li>
+          </ul>
+
+          <h2>7. Children</h2>
+          <p>Vectr is not directed at children under 13.</p>
+
+          <h2>8. Contact</h2>
+          <p>Developer: DMTech Softworks. App: Vectr.<br />
+          Email: <a href="mailto:dmtech.softworks@gmail.com">dmtech.softworks@gmail.com</a><br />
+          Telegram: <a href="https://t.me/DMTech_Softworks" rel="noopener noreferrer" target="_blank">@DMTech_Softworks</a></p>
+
+          <h2>9. Changes</h2>
+          <p>We may update this policy in app updates. Continued use after an update means you accept the revised text shown at first launch / in Settings. This web page reflects the same policy for Google Play.</p>
+        </article>
+
+        <article class="policy-block" data-lang-panel="ru" hidden>
+          <h2>1. Кто мы</h2>
+          <p>Vectr - локальная мобильная IDE с опциональным ИИ-агентом от DMTech Softworks. Приложение работает на твоём устройстве.</p>
+
+          <h2>2. Какие данные обрабатываются</h2>
+          <ul>
+            <li>API-ключи и настройки хранятся на устройстве (где возможно - в зашифрованных prefs).</li>
+            <li>Файлы проекта, которые ты открываешь через системный выбор папки (SAF), остаются под твоим контролем. Vectr не загружает проект на наши серверы.</li>
+            <li>История чатов хранится локально в базе на устройстве.</li>
+            <li>Когда ты пользуешься агентом, промпты и результаты инструментов уходят к API-провайдеру, который ТЫ указал (DeepSeek или OpenAI-compatible). Мы этот API не предоставляем.</li>
+          </ul>
+
+          <h2>3. Опциональная сеть</h2>
+          <ul>
+            <li>web_search / fetch_url могут обращаться к сторонним сайтам (например DuckDuckGo).</li>
+            <li>Уведомления (Android 13+) показывают работу агента в фоне или запросы на подтверждение - только если ты разрешишь.</li>
+          </ul>
+
+          <h2>4. Команды, правки файлов и подтверждения</h2>
+          <ul>
+            <li>По умолчанию shell-команды и правки файлов от агента требуют твоего подтверждения в приложении (полоса pending и/или уведомления).</li>
+            <li>Опционально в Настройки → Доверие и подтверждения можно добавить программы в whitelist, включить авто-принятие правок файлов и выбрать runner (встроенный Shell или Termux).</li>
+            <li>Эти опции по умолчанию выключены и управляются тобой.</li>
+          </ul>
+
+          <h2>5. Опциональный Termux</h2>
+          <ul>
+            <li>Vectr может попросить Termux выполнить shell-команду (после твоего подтверждения или автоматически, если программа в whitelist и выбран runner Termux).</li>
+            <li>Нужны Termux и Termux:Tasker из F-Droid и особое разрешение «Выполнение команд в среде Termux».</li>
+            <li>Termux необязателен: можно пользоваться файлами, редактором и агентом без shell через Termux.</li>
+          </ul>
+
+          <h2>6. Разрешения</h2>
+          <ul>
+            <li>Интернет - API провайдера ИИ и опциональный web search/fetch.</li>
+            <li>Уведомления - прогресс фоновой работы ИИ и запросы на подтверждение.</li>
+            <li>Foreground service (dataSync) - чтобы AI-стрим не убивался при сворачивании приложения.</li>
+            <li>Termux RUN_COMMAND - только для shell через Termux, если ты этим пользуешься.</li>
+            <li>Доступ к файлам - только к папкам/файлам, которые ты сам открыл.</li>
+          </ul>
+
+          <h2>7. Дети</h2>
+          <p>Vectr не предназначен для детей младше 13 лет.</p>
+
+          <h2>8. Контакты</h2>
+          <p>Разработчик: DMTech Softworks. Приложение: Vectr.<br />
+          Email: <a href="mailto:dmtech.softworks@gmail.com">dmtech.softworks@gmail.com</a><br />
+          Telegram: <a href="https://t.me/DMTech_Softworks" rel="noopener noreferrer" target="_blank">@DMTech_Softworks</a></p>
+
+          <h2>9. Изменения</h2>
+          <p>Политика может обновляться вместе с приложением. Продолжая пользоваться после обновления, ты принимаешь текст, показанный при первом запуске / в настройках. Эта веб-страница отражает ту же политику для Google Play.</p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p>DMTech Softworks · Vectr</p>
+        <div class="footer-links">
+          <a href="../index.html" data-i18n="footer.home">Home</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/bg.js?v=10"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -19,6 +19,9 @@
   const WAVE_FX = 2.15;
   const WAVE_FY = 1.2;
   const NOISE_AMP = 0.022;
+  const MIX_AMP = 0.045;
+  const MIX_SPEED = 0.55;
+  const TENT_SPEED = 0.38;
   const DRIFT_SPEED = 0.028;
   const MINT_SPEED = 0.055;
   const DENSITY_THRESH = 0.4;
@@ -261,33 +264,95 @@
   }
 
   function waveWarp(u, v, t) {
-    // Traveling diagonal waves → land outline flows like water
+    // Traveling waves + local swirl = pixels feel shuffled
     const ph1 = u * WAVE_FX + v * WAVE_FY - t * WAVE_SPEED;
     const ph2 = u * (-WAVE_FY * 0.7) + v * WAVE_FX * 0.55 - t * WAVE_SPEED * 0.62;
     const w1 = Math.sin(ph1);
     const w2 = Math.sin(ph2 + 1.1);
-    const n =
-      (vnoise3(u * 2.4, v * 2.4, t * 0.08) * 2 - 1) * NOISE_AMP;
+    const n = (vnoise3(u * 2.4, v * 2.4, t * 0.08) * 2 - 1) * NOISE_AMP;
+
+    // Curl-ish mix: rotate a small noise vector so membership churns
+    const mx = vnoise3(u * 5.5, v * 5.5, t * MIX_SPEED) * 2 - 1;
+    const my = vnoise3(u * 5.5 + 40, v * 5.5, t * MIX_SPEED + 1.3) * 2 - 1;
+    const swirl = Math.sin(t * 0.7 + u * 6 + v * 4) * 0.35;
+
     return {
-      u: u + WAVE_AMP * w1 + WAVE_AMP * 0.45 * w2 + n,
-      v: v + WAVE_AMP * 0.85 * Math.cos(ph1 * 0.9 + 0.4) + WAVE_AMP * 0.35 * w2 + n * 0.7
+      u:
+        u +
+        WAVE_AMP * w1 +
+        WAVE_AMP * 0.45 * w2 +
+        n +
+        MIX_AMP * (mx * Math.cos(swirl) - my * Math.sin(swirl)),
+      v:
+        v +
+        WAVE_AMP * 0.85 * Math.cos(ph1 * 0.9 + 0.4) +
+        WAVE_AMP * 0.35 * w2 +
+        n * 0.7 +
+        MIX_AMP * (mx * Math.sin(swirl) + my * Math.cos(swirl))
     };
+  }
+
+  // Soft tentacle ribbons reaching from hubs into the void
+  function tentacleField(u, v, t) {
+    const hubs = [
+      { cx: 0.22, cy: 0.38, base: 0.15 },
+      { cx: 0.72, cy: 0.42, base: 1.9 },
+      { cx: 0.55, cy: 0.7, base: 3.4 }
+    ];
+    let best = 0;
+    const arms = 5;
+
+    for (let h = 0; h < hubs.length; h++) {
+      const hub = hubs[h];
+      const dx0 = u - hub.cx;
+      const dy0 = v - hub.cy;
+      const r = Math.sqrt(dx0 * dx0 + dy0 * dy0) + 1e-5;
+      const ang = Math.atan2(dy0, dx0);
+
+      for (let a = 0; a < arms; a++) {
+        const phase = hub.base + a * ((Math.PI * 2) / arms);
+        const wiggle =
+          Math.sin(t * TENT_SPEED * 1.4 + phase * 2 + r * 9) * 0.55 +
+          Math.sin(t * TENT_SPEED * 0.7 + a + r * 4) * 0.35;
+        const spine = phase + t * TENT_SPEED * 0.45 + wiggle;
+        let dAng = ang - spine;
+        dAng = ((dAng + Math.PI) % (Math.PI * 2)) - Math.PI;
+        if (dAng < 0) dAng = -dAng;
+
+        // Thin near tip, thicker near root; length pulses
+        const len = 0.22 + 0.08 * Math.sin(t * TENT_SPEED + phase);
+        if (r > len) continue;
+        const along = r / len;
+        const thick = (0.018 + 0.012 * (1 - along)) * (0.85 + 0.2 * Math.sin(t * 2 + a));
+        const ribbon = Math.exp(-(dAng * dAng) / (thick * thick * 4));
+        const taper = (1 - along) * (1 - along);
+        const val = ribbon * taper * (0.75 + 0.25 * vnoise3(u * 8, v * 8, t * 0.2 + a));
+        if (val > best) best = val;
+      }
+    }
+    return best > 1 ? 1 : best;
   }
 
   function sampleField(u, v, t) {
     const wuv = waveWarp(u, v, t);
     let land = sampleMaskRaw(wuv.u, wuv.v);
-    if (land <= 0.04) return 0;
 
-    // Soft interior carve — also wave-shifted so holes drift with the swell
-    const carve = vnoise3(wuv.u * 3.2, wuv.v * 3.2, t * 0.12);
-    const carve2 = vnoise3(wuv.u * 7.5 + 20, wuv.v * 7.5, t * 0.18);
-    land *= 0.35 + carve * 0.5 + carve2 * 0.25;
-    land = Math.max(
-      0,
-      Math.min(1, land + vnoise3(wuv.u * 14, wuv.v * 14, t * 0.15) * 0.1 - 0.03)
-    );
-    return land;
+    // Soft interior carve — holes drift with the swell
+    if (land > 0.04) {
+      const carve = vnoise3(wuv.u * 3.2, wuv.v * 3.2, t * 0.12);
+      const carve2 = vnoise3(wuv.u * 7.5 + 20, wuv.v * 7.5, t * 0.18);
+      land *= 0.35 + carve * 0.5 + carve2 * 0.25;
+      land = Math.max(
+        0,
+        Math.min(1, land + vnoise3(wuv.u * 14, wuv.v * 14, t * 0.15) * 0.1 - 0.03)
+      );
+    } else {
+      land = 0;
+    }
+
+    // Tentacles sample in warped space so they thrash with the waves
+    const tent = tentacleField(wuv.u, wuv.v, t);
+    return Math.max(land, tent * 0.92);
   }
 
   function mintField(u, v, t) {

@@ -34,8 +34,8 @@
       "footer.home": "Home",
       "privacy.back": "Back home",
       "privacy.title": "Privacy Policy - Vectr",
-      "privacy.updated": "Last updated: July 24, 2026",
-      "privacy.note": "This page is the public policy for Vectr on Google Play.",
+      "privacy.updated": "Last updated: July 29, 2026",
+      "privacy.note": "Public policy for Vectr on Google Play. Processing follows the laws of the Republic of Kazakhstan.",
       "lang.label": "Language"
     },
     ru: {
@@ -70,8 +70,8 @@
       "footer.home": "На главную",
       "privacy.back": "На главную",
       "privacy.title": "Политика конфиденциальности - Vectr",
-      "privacy.updated": "Обновлено: 24 июля 2026",
-      "privacy.note": "Публичная политика Vectr для Google Play.",
+      "privacy.updated": "Обновлено: 29 июля 2026",
+      "privacy.note": "Публичная политика Vectr для Google Play. Обработка - по законодательству Республики Казахстан.",
       "lang.label": "Язык"
     }
   };

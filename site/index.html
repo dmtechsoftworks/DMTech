@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DMTech Softworks</title>
+  <meta name="description" content="DMTech Softworks - Android indie softworks. Local-first tools. Shipping Vectr and Morph Launcher." />
+  <meta name="theme-color" content="#0b0b0b" />
+  <link rel="icon" href="logo/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+
+  <div class="page">
+    <header class="site-header">
+      <div class="nav-inner">
+        <a class="brand-mark" href="index.html">
+          <img src="logo/logo.png" alt="" width="28" height="28" />
+          <span>DMTech</span>
+        </a>
+
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" data-i18n-aria="nav.open">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-panel" data-nav-panel>
+          <ul class="nav-links">
+            <li><a href="#about" data-i18n="nav.about">About</a></li>
+            <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+            <li><a href="privacy/" data-i18n="nav.privacy">Privacy</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+          </ul>
+          <div class="lang-switch" role="group" data-i18n-aria="lang.label" aria-label="Language">
+            <button type="button" data-lang-btn="en">EN</button>
+            <button type="button" data-lang-btn="ru">RU</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <h1 class="hero-brand">DMTech <span>Softworks</span></h1>
+            <p class="hero-headline" data-i18n="hero.headline">Android tools that stay on your side.</p>
+            <p class="hero-sub" data-i18n="hero.sub">Indie softworks. Local-first where it matters. Shipping Vectr and Morph Launcher.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#projects" data-i18n="hero.ctaProjects">See projects</a>
+              <a class="btn btn-ghost" href="#contact" data-i18n="hero.ctaContact">Contact</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="wrap reveal">
+          <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+          <h2 data-i18n="about.title">Small shop. Sharp focus.</h2>
+          <p class="lead" data-i18n="about.body">DMTech Softworks is an Android-focused indie studio. We ship tools that respect the device - local storage, your API keys, your folders. No fluff cloud for things that belong on the phone.</p>
+          <p class="lead" data-i18n="about.body2">In the shop now: Vectr (mobile IDE + optional AI agent) and Morph Launcher (local-first home screen).</p>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="wrap reveal">
+          <p class="eyebrow" data-i18n="projects.eyebrow">Projects</p>
+          <h2 data-i18n="projects.title">What we ship</h2>
+          <div class="project-list" data-projects></div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="wrap reveal">
+          <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
+          <h2 data-i18n="contact.title">Ping the shop</h2>
+          <p class="lead" data-i18n="contact.body">Telegram or email. No ticket bots.</p>
+          <ul class="contact-list">
+            <li>
+              <a href="https://t.me/DMTech_Softworks" rel="noopener noreferrer" target="_blank">
+                <span class="label" data-i18n="contact.telegram">Telegram</span>
+                <span class="value">@DMTech_Softworks</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:dmtech.softworks@gmail.com">
+                <span class="label" data-i18n="contact.email">Email</span>
+                <span class="value">dmtech.softworks@gmail.com</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p>© <span id="y"></span> DMTech Softworks · <span data-i18n="footer.tag">Android indie softworks</span></p>
+        <div class="footer-links">
+          <a href="privacy/" data-i18n="footer.privacyVectr">Privacy (Vectr)</a>
+          <a href="privacy/morph-launcher/" data-i18n="footer.privacyMorph">Privacy (Morph)</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+  <script src="js/i18n.js"></script>
+  <script src="js/bg.js?v=11"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

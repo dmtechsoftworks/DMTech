@@ -132,10 +132,10 @@ a:hover {
 }
 
 .brand-mark img {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  object-fit: contain;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  object-fit: cover;
   flex-shrink: 0;
 }
 

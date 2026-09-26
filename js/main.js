@@ -1,22 +1,25 @@
 (function () {
+  function sitePrefix() {
+    // works from /, /projects.html, /privacy/, /privacy/morph-launcher/, /privacy/growsense/
+    const path = location.pathname.replace(/\\/g, "/").replace(/\/index\.html$/i, "").replace(/\/$/, "");
+    if (!path.includes("/privacy")) return "";
+    const after = path.split("/privacy")[1] || "";
+    const depth = after.split("/").filter(Boolean).length; // "" => 0, "/morph-launcher" => 1
+    return "../".repeat(depth + 1);
+  }
+
   function projectsBase() {
-    // works from /, /projects.html, /privacy/
-    const path = location.pathname.replace(/\\/g, "/");
-    if (path.includes("/privacy")) return "../data/projects.json";
-    return "data/projects.json";
+    return sitePrefix() + "data/projects.json";
   }
 
   function iconSrc(rel) {
-    const path = location.pathname.replace(/\\/g, "/");
-    if (path.includes("/privacy")) return "../" + rel;
-    return rel;
+    return sitePrefix() + rel;
   }
 
   function linkHref(rel) {
     if (!rel) return null;
-    const path = location.pathname.replace(/\\/g, "/");
-    if (path.includes("/privacy") && !/^https?:/i.test(rel)) return "../" + rel;
-    return rel;
+    if (/^https?:/i.test(rel)) return rel;
+    return sitePrefix() + rel;
   }
 
   function renderProjects(list, mount) {

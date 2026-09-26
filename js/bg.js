@@ -252,7 +252,7 @@
   }
 
   function heroClear(nx, ny) {
-    // Mobile hero is stacked full-width — lighter fade so bottom stays filled
+    // Mobile hero is stacked full-width - lighter fade so bottom stays filled
     if (w <= 768) {
       const dx = (nx - 0.5) / 0.55;
       const dy = (ny - 0.22) / 0.28;
@@ -337,7 +337,7 @@
     const wuv = waveWarp(u, v, t);
     let land = sampleMaskRaw(wuv.u, wuv.v);
 
-    // Soft interior carve — holes drift with the swell
+    // Soft interior carve - holes drift with the swell
     if (land > 0.04) {
       const carve = vnoise3(wuv.u * 3.2, wuv.v * 3.2, t * 0.12);
       const carve2 = vnoise3(wuv.u * 7.5 + 20, wuv.v * 7.5, t * 0.18);
@@ -356,7 +356,7 @@
   }
 
   function mintField(u, v, t) {
-    // Rare sparse patches only — high threshold later
+    // Rare sparse patches only - high threshold later
     const zt = t * MINT_SPEED;
     const wuv = waveWarp(u, v, t);
     return (
@@ -475,7 +475,7 @@
       if (densVal < 0.07) continue;
 
       const hv = hashes[k];
-      // Sparse fill — Trae density, not solid continents
+      // Sparse fill - Trae density, not solid continents
       if (hv > densVal * 0.72 + 0.12) continue;
 
       // Gray variance follows the wave swell slightly → readable motion in tone
@@ -483,7 +483,7 @@
       const bright = 0.22 + densVal * 0.55 + hv * 0.18 + swell * 0.12;
       let rgb = grayShade(bright, hv);
 
-      // Rare mint (~1–3% of lit cells)
+      // Rare mint (~1 - 3% of lit cells)
       if (densVal > 0.35 && hv > 0.82 && mintField(u, v, t) > MINT_THRESH) {
         const a = 0.55 + densVal * 0.35;
         rgb = [
@@ -576,7 +576,7 @@
   maskImg.decoding = "async";
   maskImg.onload = onMaskLoad;
   maskImg.onerror = () => {
-    console.warn("[bg] world-mask missing — procedural lobes");
+    console.warn("[bg] world-mask missing - procedural lobes");
     maskData = null;
     onReady();
   };
